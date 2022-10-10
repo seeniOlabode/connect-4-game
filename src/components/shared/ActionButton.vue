@@ -47,4 +47,28 @@ button:hover {
 [class*="white"] {
   @apply text-game-black bg-game-white;
 }
+
+[class*="round"] {
+  @apply rounded-full w-auto h-auto border-game-black border-solid border-4 bg-game-red;
+  box-shadow: 0px 5px 0px #000000;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[class*="round"]:hover {
+  box-shadow: 0px 5px 0px 0px #5c2dd5;
+}
+
+[class*="secondary"] {
+  @apply text-game-white shadow-none bg-game-dark-purple px-5 rounded-3xl font-bold w-28 h-10 flex items-center justify-center;
+  font-size: 16px;
+}
+
+[class*="secondary"]:hover {
+  @apply bg-game-red;
+  box-shadow: none;
+}
 </style>
