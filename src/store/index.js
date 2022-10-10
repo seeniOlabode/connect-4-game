@@ -8,7 +8,7 @@ export default createStore({
     holes: HolesArray,
     holePrototype: Hole,
     currentPlayer: "red",
-    turnCount: 0,
+    // turnCount: 1,
     matchFound: false,
     winner: "",
     redCount: Hole.redScore,
@@ -26,13 +26,13 @@ export default createStore({
       state.holes[0].fill(null);
       state.winner = "";
       state.matchFound = false;
-      if (state.turnCount % 2 == 0) {
-        state.currentPlayer = "yellow";
-        state.turnCount++;
-      } else {
-        state.currentPlayer = "red";
-        state.turnCount++;
-      }
+      // if (state.turnCount % 2 == 0) {
+      //   state.currentPlayer = "yellow";
+      //   state.turnCount++;
+      // } else {
+      //   state.currentPlayer = "red";
+      //   state.turnCount++;
+      // }
     },
     checkForMatches({ state }) {
       state.holes.forEach((hole) => {
@@ -61,6 +61,27 @@ export default createStore({
   getters: {
     getPlayer(state) {
       return state.currentPlayer;
+    },
+    getRedCount(state) {
+      let redCount = 0;
+      state.holes.forEach((hole) => {
+        if (hole.value == "red") {
+          redCount++;
+        }
+      });
+      console.log("acc", redCount);
+
+      return redCount;
+    },
+    getYellowCount(state) {
+      let yellowCount = 0;
+      state.holes.forEach((hole) => {
+        if (hole.value == "yellow") {
+          yellowCount++;
+        }
+      });
+      console.log("acc", yellowCount);
+      return yellowCount;
     },
   },
   modules: {},

@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full flex items-center justify-center px-5">
     <div
-      class="bg-game-white w-full border-game-black border-4 px-5 py-16 pt-10 rules-container relative"
+      class="bg-game-white w-full border-game-black border-4 px-5 py-16 pt-10 rules-container relative max-w-lg"
     >
       <h1 class="text-center text-6xl font-bold">RULES</h1>
       <div>

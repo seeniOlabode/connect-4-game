@@ -1,5 +1,5 @@
 <template>
-  <button :class="buttonType">
+  <button :disabled="disabled" :class="[buttonType, { disabled: disabled }]">
     <slot></slot>
   </button>
 </template>
@@ -11,6 +11,11 @@ export default {
     buttonType: {
       type: String,
       required: true,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 };
@@ -70,5 +75,14 @@ button:hover {
 [class*="secondary"]:hover {
   @apply bg-game-red;
   box-shadow: none;
+}
+
+.disabled {
+  opacity: 0.8;
+}
+
+.disabled:hover {
+  box-shadow: 0px 10px 0px #000000 !important;
+  @apply border-game-black;
 }
 </style>

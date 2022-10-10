@@ -13,7 +13,7 @@
   <div>
     <div class="relative flex justify-center">
       <img
-        class="w-full absolute top-0 z-10"
+        class="w-full absolute top-0 z-10 bg-game-purple rounded-b-3xl grid-layer"
         src="@/assets/images/board-layer-black-small.svg"
         alt=""
       />
@@ -23,8 +23,8 @@
           :key="hole.index + hole.value"
           class="hole-span relative"
           :class="{ 'cursor-pointer': hole.value === null && !matchFound }"
-          :disabled="matchFound"
-          @click="fillHole(hole.index)"
+          :disabled="matchFound || hole.value != null"
+          @click="fillHole(hole.index, hole.value == null)"
           ><span v-if="hole.value != null" class="content" draggable="false">
             <img
               :src="hole.value === 'red' ? redCounter : yellowCounter"
@@ -43,6 +43,9 @@
       />
       <ingame-instruction-board class="absolute" />
     </div>
+    <div
+      class="w-full h-64 bg-game-dark-purple absolute bottom-0 left-0 down-decor"
+    ></div>
   </div>
 </template>
 
@@ -79,11 +82,13 @@ export default {
     },
   },
   methods: {
-    fillHole(index) {
-      this.holes[index].fill(this.currentPlayer);
-      this.$store.dispatch("switchPlayer");
-      this.currentPlayer = this.currentPlayer == "yellow" ? "red" : "yellow";
-      this.$store.dispatch("checkForMatches");
+    fillHole(index, check) {
+      if (check) {
+        this.holes[index].fill(this.currentPlayer);
+        // this.currentPlayer = this.currentPlayer == "yellow" ? "red" : "yellow";
+        this.$store.dispatch("checkForMatches");
+        this.$store.dispatch("switchPlayer");
+      }
     },
   },
 };
@@ -109,8 +114,17 @@ export default {
 .hole-grid {
   display: flex;
   align-content: stretch;
-  padding: 8px;
-  gap: 5.5px;
+  padding: 5px;
+  gap: 3px;
+}
+
+@media (min-width: 640px) {
+  .hole-grid {
+    display: flex;
+    align-content: stretch;
+    padding: 8px;
+    gap: 5.5px;
+  }
 }
 
 .hole-span {
@@ -162,5 +176,15 @@ export default {
   border: solid 5px white;
   display: block;
   border-radius: 50%;
+}
+
+.down-decor {
+  border-radius: 60px 60px 0 0;
+}
+
+@media (min-width: 768px) {
+  .grid-layer {
+    border-radius: 50px;
+  }
 }
 </style>

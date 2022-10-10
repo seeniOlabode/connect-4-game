@@ -5,7 +5,7 @@
     @click="handleCick"
   >
     <div
-      class="content bg-game-purple border-solid border-4 border-game-black w-full pt-7 pb-8"
+      class="content bg-game-purple border-solid border-4 border-game-black w-full pt-7 pb-8 sm:pt-8 sm:pb-10 max-w-lg px-5"
     >
       <h1 class="text-center text-6xl font-bold text-game-white mt-3">PAUSE</h1>
 
@@ -80,6 +80,7 @@ export default {
 
 .content {
   border-radius: 40px;
+  box-shadow: 0px 10px 0px #000000;
 }
 
 .inmenu-button {
