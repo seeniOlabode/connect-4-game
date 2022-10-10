@@ -12,10 +12,10 @@
     </div>
     <div class="relative">
       <div
-        class="scoreboard flex justify-between mt-12 sm:mt-8 gap-5 md:absolute right-0 left-0"
+        class="scoreboard flex justify-between mt-12 sm:mt-8 gap-5 lg:absolute right-0 left-0"
       >
         <div
-          class="score-child flex relative bg-game-white w-2/4 flex-wrap rounded-3xl score-count sm:justify-center sm:gap-5 md:absolute md:-left-72"
+          class="score-child player-1 flex relative bg-game-white w-2/4 flex-wrap rounded-3xl score-count sm:justify-center sm:gap-5 lg:absolute lg:-left-1/4"
         >
           <span
             class="w-full text-base text-center mt-3 sm:mb-0 sm:mt-0 sm:text-xl sm:w-auto"
@@ -30,14 +30,14 @@
           </div>
         </div>
         <div
-          class="score-child flex relative bg-game-white w-2/4 flex-wrap rounded-3xl score-count justify-center gap-5 py-2 md:absolute md:-right-72"
+          class="score-child player-2 flex relative bg-game-white w-2/4 flex-wrap rounded-3xl score-count justify-center gap-5 py-2 lg:absolute lg:-right-1/4"
         >
           <span
-            class="text-base w-full text-center mt-3 sm:mb-0 sm:mt-0 sm:text-xl sm:order-2 sm:w-auto md:order-1"
+            class="text-base w-full text-center mt-3 sm:mb-0 sm:mt-0 sm:text-xl sm:order-2 sm:w-auto lg:order-1"
             >PLAYER 2</span
           >
           <span
-            class="text-center w-full text-3xl font-bold mb-3 sm:mb-0 sm:text-5xl sm:order-1 sm:w-auto md:order-2"
+            class="text-center w-full text-3xl font-bold mb-3 sm:mb-0 sm:text-5xl sm:order-1 sm:w-auto lg:order-2"
             >{{ yellowCount }}</span
           >
           <div class="score-image absolute -right-5 h-full flex items-center">
@@ -106,22 +106,34 @@ export default {
 }
 
 .score-child {
-  @apply sm:flex-nowrap items-center md:h-48 md:w-36 md:flex-wrap md:content-center md:top-40;
+  @apply sm:flex-nowrap items-center lg:h-48 lg:w-36 lg:flex-wrap lg:content-center lg:top-40;
   z-index: 100000;
 }
 
 .score-child span {
-  @apply md:w-full;
+  @apply lg:w-full;
 }
 
 .score-image {
-  @apply md:h-auto md:-top-7;
+  @apply lg:h-auto lg:-top-7;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .score-image {
     left: revert;
     right: revert;
+  }
+}
+
+@media (min-width: 1200px) {
+  .score-child.player-1 {
+    @apply -left-64;
+    /* display: none; */
+  }
+
+  .score-child.player-2 {
+    @apply -right-64;
+    /* display: none; */
   }
 }
 </style>

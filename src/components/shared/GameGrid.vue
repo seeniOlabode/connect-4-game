@@ -13,8 +13,13 @@
   <div>
     <div class="relative flex justify-center">
       <img
-        class="w-full absolute top-0 z-10 bg-game-purple rounded-b-3xl grid-layer"
+        class="w-full absolute top-0 z-10 bg-game-purple rounded-b-3xl grid-layer md:hidden"
         src="@/assets/images/board-layer-black-small.svg"
+        alt=""
+      />
+      <img
+        class="w-full absolute top-0 z-10 bg-game-purple rounded-b-3xl grid-layer hidden md:block"
+        src="@/assets/images/board-layer-black-large.svg"
         alt=""
       />
       <div class="hole-grid w-full h-full flex flex-wrap absolute top-0 z-30">
@@ -37,8 +42,13 @@
         ></span>
       </div>
       <img
-        class="absolute top-0 w-full z-50 white-board"
+        class="absolute top-0 w-full z-50 white-board md:hidden"
         src="@/assets/images/board-layer-white-small.svg"
+        alt=""
+      />
+      <img
+        class="absolute top-0 w-full z-50 white-board hidden md:block"
+        src="@/assets/images/board-layer-white-large.svg"
         alt=""
       />
       <ingame-instruction-board class="absolute" />
@@ -167,6 +177,7 @@ export default {
   position: absolute;
   top: 0;
   padding: 13px;
+  @apply sm:p-6;
 }
 
 .matched-marker-content {
@@ -176,6 +187,12 @@ export default {
   border: solid 5px white;
   display: block;
   border-radius: 50%;
+}
+
+@media (min-width: 640px) {
+  .matched-marker-content {
+    border-width: 6px;
+  }
 }
 
 .down-decor {
