@@ -67,7 +67,7 @@ export class Hole {
   //   Hole.checkForMatch(start, 'left');
   // }
 
-  static checkForMatch(start, direction) {
+  static checkForMatch(start, direction, direction2) {
     if (Hole.matchFound) {
       return Hole.matchObject;
     }
@@ -81,19 +81,53 @@ export class Hole {
     // console.log("check", currentHole.value);
     let startHoleValue = currentHole.value;
     matchObject.winner = startHoleValue;
-    // console.log("start", startHoleValue);
-    let nextIndex = currentHole[direction];
     matchObject.matchedArray.push(start);
-    if (startHoleValue != null) {
-      for (let i = 0; i < 3; i++) {
-        currentHole = HolesArray[nextIndex];
-        if (currentHole != undefined) {
-          if (currentHole.value == startHoleValue) {
-            matches++;
-            matchObject.matchedArray.push(currentHole.index);
-            nextIndex = currentHole[direction];
-          } else {
-            break;
+    // console.log("start", startHoleValue);
+    if (direction2 === undefined) {
+      let nextIndex = currentHole[direction];
+      if (startHoleValue != null) {
+        for (let i = 0; i < 3; i++) {
+          currentHole = HolesArray[nextIndex];
+          if (currentHole != undefined) {
+            if (currentHole.value == startHoleValue) {
+              matches++;
+              matchObject.matchedArray.push(currentHole.index);
+              nextIndex = currentHole[direction];
+            } else {
+              break;
+            }
+          }
+        }
+      }
+    } else {
+      console.log(direction, direction2);
+      let nextIndex;
+      let directionIndex = currentHole[direction];
+      if (HolesArray[directionIndex] != undefined) {
+        if (HolesArray[directionIndex][direction2] != undefined) {
+          nextIndex = HolesArray[currentHole[direction]][direction2];
+        } else {
+          return "";
+        }
+      } else {
+        return "";
+      }
+
+      console.log("next", nextIndex);
+      console.log(direction, direction2);
+      if (startHoleValue != null) {
+        for (let i = 0; i < 3; i++) {
+          currentHole = HolesArray[nextIndex];
+          if (currentHole != undefined) {
+            if (currentHole.value == startHoleValue) {
+              matches++;
+              matchObject.matchedArray.push(currentHole.index);
+              try {
+                nextIndex = HolesArray[currentHole[direction]][direction2];
+              } catch (error) {
+                return "";
+              }
+            }
           }
         }
       }

@@ -40,6 +40,11 @@ export default createStore({
         state.holePrototype.checkForMatch(hole.index, "right");
         state.holePrototype.checkForMatch(hole.index, "bottom");
         state.holePrototype.checkForMatch(hole.index, "left");
+        state.holePrototype.checkForMatch(hole.index, "top", "right");
+        state.holePrototype.checkForMatch(hole.index, "top", "left");
+        state.holePrototype.checkForMatch(hole.index, "bottom", "right");
+        state.holePrototype.checkForMatch(hole.index, "bottom", "left");
+
         // state.holePrototype.checkForMatch(hole.index, "topLeft");
         // state.holePrototype.checkForMatch(hole.index, "topRight");
         // state.holePrototype.checkForMatch(hole.index, "bottomLeft");
