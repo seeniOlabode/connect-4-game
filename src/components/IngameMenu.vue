@@ -75,7 +75,7 @@ export default {
 <style scoped>
 .modal-backdrop {
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  z-index: 100000000;
 }
 
 .content {
